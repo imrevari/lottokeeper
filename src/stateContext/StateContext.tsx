@@ -17,7 +17,7 @@ const admin = {
 export const StateContext = createContext<StateContextType>({
     purchaseTicket: () => {},
     winLottary: () => {},
-    chaneName: () => {},
+    changeName: () => {},
     player,
     admin
 })

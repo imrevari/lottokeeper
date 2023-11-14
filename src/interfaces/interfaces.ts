@@ -2,7 +2,7 @@ import { Actions, UserType } from "./enums";
 
 export interface User {
     userType: UserType;
-    userName: String;
+    userName: string;
     balance: number;
 }
 
@@ -16,7 +16,7 @@ export interface State {
 export interface StateContextType {
     purchaseTicket: (amount: number) => void;
     winLottary: (amount: number) => void;
-    chaneName: (ewName: string, forPlayer: boolean) => void;
+    changeName: (newName: string, forPlayer: boolean) => void;
     player: User;
     admin: User;
   }

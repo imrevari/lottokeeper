@@ -47,7 +47,7 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
         });
     }, []);
 
-    const chaneName = useCallback((newName: string, forPlayer: boolean) => {
+    const changeName = useCallback((newName: string, forPlayer: boolean) => {
         dispatch({
           type: forPlayer ? Actions.CHANGE_PLAYER_NAME : Actions.CHANGE_ADMIN_NAME,
           payload: {
@@ -65,7 +65,7 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
                 value={{
                     purchaseTicket,
                     winLottary,
-                    chaneName,
+                    changeName,
                     player,
                     admin
                 }}>
