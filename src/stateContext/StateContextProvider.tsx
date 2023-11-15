@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect, useReducer } from 'react';
-import { LotteryTicket, State } from '../interfaces/interfaces';
+import { Draw, LotteryTicket, State } from '../interfaces/interfaces';
 import { Actions, UserType } from '../interfaces/enums';
 import reducer from './reducer';
 import { StateContext } from './StateContext';
@@ -32,6 +32,8 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
 
     const {player, admin, lotteryTickets, draws} = state;
 
+    
+
     useEffect(() => {
       const {userName, balance} = player;
       window.localStorage.setItem(PLAYER_NAME, userName)
@@ -42,6 +44,10 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
       const {balance} = admin;
       window.localStorage.setItem(ADMIN_BALANCE, balance.toString())
     }, [admin])
+
+    useEffect(() => {
+      console.log(draws)
+    }, [draws])
 
 
 
@@ -73,6 +79,15 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
         });
     }, []);
 
+    const draw = useCallback((newDraw: Draw) => {
+      dispatch({
+        type:  Actions.DRAW,
+        payload: {
+          newDraw: newDraw
+        }
+      });
+  }, []);
+
     return(
         <>
             <StateContext.Provider
@@ -80,6 +95,7 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
                     purchaseTicket,
                     winLottary,
                     changeName,
+                    draw,
                     player,
                     admin,
                     lotteryTickets,

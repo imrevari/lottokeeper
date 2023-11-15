@@ -6,15 +6,38 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { FC, Fragment } from 'react';
+import { FC, Fragment, useState } from 'react';
+import { generateRandomNumbers } from '../../commonFunctions/functions';
+import { Typography } from '@mui/material';
+import { useStateContext } from '../../stateContext/StateContext';
 
 
 
 const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
 
+  const {draw} = useStateContext()
+
+  const [drownNumbers, setDrownNumbers] = useState<number[] | null>(null)
+
+  const drawNumbers = () =>{
+    const numbers = generateRandomNumbers()
+    
+    setDrownNumbers(numbers.sort((a, b) => a - b))
+    draw({
+      conductedOn: new Date(),
+      selectedNumbers: numbers
+    })
+    //select 5 random numbers
+    //set the numbers in the draw state
+    //update all the tickets purchased so far
+    //make evaluation for the table
+  }
+
+
 
 
   const handleClose = () => {
+    setDrownNumbers(null)
     setOpen(false);
   };
 
@@ -25,12 +48,12 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>Buy Lottery ticket</DialogTitle>
+        <DialogTitle>Draw 5 random numbers</DialogTitle>
         <DialogContent>
           <DialogContentText
             sx={{marginBottom: '8px'}}
           >
-            Select five numbers from 1 to 51.
+            Click on the button to star.
           </DialogContentText>
           <Box
             noValidate
@@ -42,23 +65,19 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
               flexWrap: 'wrap'
               
             }}
-          >
-                {/* {numbers.map(e => 
-                    <Avatar
-                    sx= {{
-                        margin: '1.5px',
-                        bgcolor: selectedNumbers.includes(e) ? 'red' : ''
-                    }}
-                    onClick={() => addToSelectedList(e)}
-                    >{e}</Avatar>
-                    
-                    )} */}
+          > 
+            <Button variant='outlined'
+              style={{maxWidth: '110px', minWidth: '110px'}}
+              onClick={drawNumbers}
+              >Draw</Button>
+              {drownNumbers && 
+              <Typography variant="h5" sx={{marginLeft: '5px', paddingTop: '3px'}}>
+                {`Numbers are: ${drownNumbers.toLocaleString()}`}
+              </Typography>}
+              
           </Box>
         </DialogContent>
         <DialogActions>
-            <Button variant='outlined'
-                style={{maxWidth: '110px', minWidth: '110px'}}
-                >Purchase</Button>
             <Button variant='outlined'
                 color='error'
                 style={{maxWidth: '110px', minWidth: '110px'}}

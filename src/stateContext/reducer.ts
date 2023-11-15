@@ -32,6 +32,11 @@ const reducer = (state: State, action: Action): State => {
                 ...state,
                 admin: {...state.admin, userName: action.payload.newName}
             }
+        case Actions.DRAW:
+            return {
+                ...state, 
+                draws: [...state.draws, action.payload.newDraw]
+            }
         default:
             return state;
 

@@ -11,6 +11,8 @@ export interface LotteryTicket {
   purchased: Date;
   selectedNumbers: number[];
   drawConducted: boolean;
+  winningNumbers?: number[];
+  wonAmount?: number;
 }
 
 export interface Draw {
@@ -29,6 +31,7 @@ export interface StateContextType {
     purchaseTicket: (amount: number, newTicket: LotteryTicket) => void;
     winLottary: (amount: number) => void;
     changeName: (newName: string, forPlayer: boolean) => void;
+    draw: (newDraw: Draw) => void;
     player: User;
     admin: User;
     lotteryTickets: LotteryTicket[];
@@ -36,6 +39,12 @@ export interface StateContextType {
   }
 
 export type Action =
+| {
+  type: Actions.DRAW;
+  payload: {
+    newDraw: Draw;
+  };
+}
 | {
     type: Actions.PLAYER_WINS;
     payload: {

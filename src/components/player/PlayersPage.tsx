@@ -10,7 +10,7 @@ import PurchasedTicketsTable from './PurchasedTicketsTable';
 
 const PlayersPage: FC<any> = () => {
 
-    const {player: {balance}, lotteryTickets} = useStateContext()
+    const {player: {balance}, lotteryTickets, draws} = useStateContext()
 
     const [open, setOpen] = useState<boolean>(false);
     const [snackBarOpened, setSnackBarOpened] = useState<boolean>(false)
