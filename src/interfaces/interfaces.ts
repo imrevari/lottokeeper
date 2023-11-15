@@ -12,7 +12,7 @@ export interface LotteryTicket {
   selectedNumbers: number[];
   drawConducted: boolean;
   winningNumbers?: number[];
-  wonAmount?: number;
+  amountWon?: number;
 }
 
 export interface Draw {
