@@ -1,17 +1,31 @@
+import { Box, Button } from '@mui/material';
 import { FC } from 'react';
+import AdminHeader from './AdminHeader';
+import AllTicketsTable from './AllTicketsTable';
 import { useStateContext } from '../../stateContext/StateContext';
 
 
 const AdminsPage: FC<any> = () => {
 
-    const {admin, changeName} = useStateContext()
-
-
+    const {lotteryTickets} = useStateContext()
 
     return(<>
-    <h1>Admin</h1>
-    <h2>{admin.balance}</h2>
-    <h2>{admin.userName}</h2>
+    <AdminHeader />
+
+    <Box sx={{ flexGrow: 3 }}>
+        <div>
+                <Button color="inherit" variant='outlined'
+                sx={{marginRight: '9px', marginTop: '15px', maxWidth: '250px', minWidth: '250px'}}
+                    >Generate random games</Button>
+
+                <Button color="inherit" variant='outlined'
+                sx={{marginRight: '9px', marginTop: '15px', maxWidth: '250px', minWidth: '250px'}}
+                    >Draw lottery</Button>
+        </div>
+        <AllTicketsTable rows={lotteryTickets}/>
+
+            {/* <PopupWindow open={open} setOpen={setOpen}/> */}
+        </Box>
 
 
     

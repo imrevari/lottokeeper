@@ -1,11 +1,11 @@
 import { FC, useMemo, useState } from 'react';
 import { useStateContext } from '../../stateContext/StateContext';
 
+import { Box, Button, ButtonGroup } from '@mui/material';
+import { UserType } from '../../interfaces/enums';
 import PlayerHeader from './PlayerHeader';
-import { Box, Button, ButtonGroup, Container } from '@mui/material';
 import PopupWindow from './PopupWindow';
 import PurchasedTicketsTable from './PurchasedTicketsTable';
-import { UserType } from '../../interfaces/enums';
 
 
 const PlayersPage: FC<any> = () => {

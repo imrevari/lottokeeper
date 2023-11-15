@@ -14,7 +14,7 @@ const initState: State = {
     },
     admin: {
         userType: UserType.ADMIN,
-        userName: window.localStorage.getItem(ADMIN_NAME) ?? '',
+        userName: 'Admin',
         balance: window.localStorage.getItem(ADMIN_BALANCE) ? parseInt(window.localStorage.getItem(ADMIN_BALANCE)!) : 0
     },
     lotteryTickets: [],
@@ -39,8 +39,7 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
     }, [player])
 
     useEffect(() => {
-      const {userName, balance} = admin;
-      window.localStorage.setItem(ADMIN_NAME, userName)
+      const {balance} = admin;
       window.localStorage.setItem(ADMIN_BALANCE, balance.toString())
     }, [admin])
 
