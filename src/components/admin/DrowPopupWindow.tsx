@@ -1,4 +1,4 @@
-
+import { FC, Fragment, useMemo, useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -6,10 +6,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { FC, Fragment, useMemo, useState } from 'react';
+
 import { generateRandomNumbers } from '../../commonFunctions/functions';
 import { Typography } from '@mui/material';
 import { useStateContext } from '../../stateContext/StateContext';
+import { Result } from '../../interfaces/interfaces';
+import ResultInfo from './ResultInfo';
 
 
 
@@ -17,11 +19,13 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
 
   const {draw, lotteryTickets} = useStateContext()
   const [drownNumbers, setDrownNumbers] = useState<number[] | null>(null)
-  const [winResults, setWinResults] = useState<any>()
+  const [winResults, setWinResults] = useState<Result | null>(null)
 
   const unplayedTickets = useMemo(() => {
     return lotteryTickets.filter(({drawConducted}) => !drawConducted)
   }, [lotteryTickets])
+
+  console.log(lotteryTickets.length)
 
   const checkForWinningTickets = (numbers: number[]) => {
     let tickets = [...unplayedTickets]
@@ -29,8 +33,6 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
     let winnersOf4 = 0;
     let winnersOf3 = 0;
     let winnersOf2 = 0;
-
-
     tickets.forEach(element => {
       element.drawConducted = true;
       const matchingNumbers = element.selectedNumbers.filter( number => numbers.includes(number))
@@ -61,28 +63,28 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
     const numbers = generateRandomNumbers()
     
     setDrownNumbers(numbers.sort((a, b) => a - b))
+
     draw({
       conductedOn: new Date(),
       selectedNumbers: numbers
     })
 
     const results = checkForWinningTickets(numbers)
-    
-    const totalWonAmount = (results.winnersOf2 * 10) + (results.winnersOf3 * 25) + (results.winnersOf4 * 50) + (results.winnersOf5 * 100)
+    const {tickets, winnersOf2, winnersOf3, winnersOf4, winnersOf5} = results;
+
+    const totalWonAmount = (winnersOf2 * 10) + (winnersOf3 * 25) + (winnersOf4 * 50) + (winnersOf5 * 100)
+
     setWinResults({
-      totalTickets: results.tickets.length,
-      totalIncome: results.tickets.length * 500,
+      totalTickets: tickets.length,
+      totalIncome: tickets.length * 500,
       totalWonAmount: totalWonAmount,
-      totalProfit: (results.tickets.length * 500) - totalWonAmount,
-      winnersOf2: results.winnersOf2,
-      winnersOf3: results.winnersOf3,
-      winnersOf4: results.winnersOf4, 
-      winnersOf5: results.winnersOf5
+      totalProfit: (tickets.length * 500) - totalWonAmount,
+      winnersOf2: winnersOf2,
+      winnersOf3: winnersOf3,
+      winnersOf4: winnersOf4, 
+      winnersOf5: winnersOf5
     })
-
-
     //update all the tickets purchased so far
-    //make evaluation for the table
   }
 
 
@@ -129,6 +131,8 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
               </Typography>}
               
           </Box>
+
+          {winResults && <ResultInfo result={winResults}/>}
         </DialogContent>
         <DialogActions>
             <Button variant='outlined'

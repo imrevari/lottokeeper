@@ -27,6 +27,17 @@ export interface State {
     draws: Draw[];
 }
 
+export interface Result {
+  totalTickets: number;
+  totalIncome: number;
+  totalWonAmount: number;
+  totalProfit: number;
+  winnersOf2: number;
+  winnersOf3: number;
+  winnersOf4: number; 
+  winnersOf5: number;
+}
+
 export interface StateContextType {
     purchaseTicket: (amount: number, newTicket: LotteryTicket) => void;
     winLottary: (amount: number) => void;
