@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { StateContextType } from '../interfaces/interfaces';
+import { LotteryTicket, StateContextType } from '../interfaces/interfaces';
 import { UserType } from '../interfaces/enums';
 
 const player = {
@@ -14,12 +14,18 @@ const admin = {
     balance: 0
 }
 
+const lotteryTickets = new Array<LotteryTicket>()
+
+
+ 
+
 export const StateContext = createContext<StateContextType>({
     purchaseTicket: () => {},
     winLottary: () => {},
     changeName: () => {},
     player,
-    admin
+    admin,
+    lotteryTickets
 })
 
 

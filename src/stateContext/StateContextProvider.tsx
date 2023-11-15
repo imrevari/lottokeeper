@@ -30,7 +30,7 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
   
     const [state, dispatch] = useReducer(reducer, initState);
 
-    const {player, admin} = state;
+    const {player, admin, lotteryTickets} = state;
 
     useEffect(() => {
       const {userName, balance} = player;
@@ -43,10 +43,6 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
       window.localStorage.setItem(ADMIN_NAME, userName)
       window.localStorage.setItem(ADMIN_BALANCE, balance.toString())
     }, [admin])
-
-    useEffect(() => {
-      console.log(JSON.stringify(state))
-    }, [state])
 
 
 
@@ -86,7 +82,8 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
                     winLottary,
                     changeName,
                     player,
-                    admin
+                    admin,
+                    lotteryTickets
                 }}>
                 {children}
             </StateContext.Provider>

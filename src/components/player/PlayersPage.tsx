@@ -1,36 +1,37 @@
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { useStateContext } from '../../stateContext/StateContext';
 
 import PlayerHeader from './PlayerHeader';
-import { Box, Button, Container } from '@mui/material';
+import { Box, Button, ButtonGroup, Container } from '@mui/material';
 import PopupWindow from './PopupWindow';
+import PurchasedTicketsTable from './PurchasedTicketsTable';
+import { UserType } from '../../interfaces/enums';
 
 
 const PlayersPage: FC<any> = () => {
 
-    const {player} = useStateContext()
+    const {lotteryTickets} = useStateContext()
 
     const [open, setOpen] = useState<boolean>(false);
+
+    const ticketsOfThePlayer = useMemo(() => {
+        return lotteryTickets.filter(({user}) => user.userType == UserType.PLAYER)
+    }, [lotteryTickets])
 
 
     return(<>
         <PlayerHeader />
 
         <Box sx={{ flexGrow: 3 }}>
-
-            <Button color="inherit" variant='outlined'
-                    style={{maxWidth: '140px', minWidth: '140px'}}
-                    onClick={() => setOpen(true)}
-            >Buy ticket</Button>
-            
+            <ButtonGroup sx={{margin: '9px 0px 2px 0px'}}>
+                <Button color="inherit" variant='outlined'
+                            style={{maxWidth: '140px', minWidth: '140px'}}
+                            onClick={() => setOpen(true)}
+                    >Buy ticket</Button>
+            </ButtonGroup>
+            <PurchasedTicketsTable rows={ticketsOfThePlayer}/>
             <PopupWindow open={open} setOpen={setOpen}/>
         </Box>
-
-
-        
-
-
-
     </>)
 }
 

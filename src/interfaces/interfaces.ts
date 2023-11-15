@@ -32,6 +32,7 @@ export interface StateContextType {
     changeName: (newName: string, forPlayer: boolean) => void;
     player: User;
     admin: User;
+    lotteryTickets: LotteryTicket[];
   }
 
 export type Action =
