@@ -28,8 +28,9 @@ const MainComponent: FC<any> = () => {
             </Toolbar>
         </AppBar>
         </Box>
+        <br></br>
 
-        <Container maxWidth="sm">
+        <Container >
             {isAdmin ? <AdminsPage /> : <PlayersPage />}
             
             
