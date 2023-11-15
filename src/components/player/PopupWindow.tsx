@@ -117,13 +117,12 @@ const PopupWindow: FC<any> = ({open, setOpen}) => {
         open={snackBarOpened}
         autoHideDuration={6000}
         onClose={handleSnackBarClose}
-        // action={action}
         >
-        <Alert severity="error">{selectedNumbers.length >= 5 ? 
-        'Cannot select more than 5'
-        :
-        'Must select five numbers'    
-    }</Alert>
+          <Alert severity="error">{selectedNumbers.length >= 5 ? 
+          'Cannot select more than 5'
+          :
+          'Must select five numbers'    
+          }</Alert>
         </Snackbar>
     </Fragment>
   );

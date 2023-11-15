@@ -31,13 +31,10 @@ const AdminsPage: FC<any> = () => {
                 sx={{marginRight: '9px', marginTop: '15px', maxWidth: '250px', minWidth: '250px'}}
                     >Draw lottery</Button>
         </div>
-        <AllTicketsTable rows={lotteryTickets}/>
+        <AllTicketsTable rows={lotteryTickets.sort( ({user: {userType: a}}, {user: {userType: b}}) => a - b)}/>
 
-            <RandomGeneratorPopupWindow open={isRandomGeneratorOpened} setOpen={setIsRandomgeneratorOpened}/>
-        </Box>
-
-
-    
+        <RandomGeneratorPopupWindow open={isRandomGeneratorOpened} setOpen={setIsRandomgeneratorOpened}/>
+    </Box>
     </>)
 }
 
