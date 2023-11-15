@@ -16,9 +16,9 @@ const initState: State = {
         userType: UserType.ADMIN,
         userName: window.localStorage.getItem(ADMIN_NAME) ?? '',
         balance: window.localStorage.getItem(ADMIN_BALANCE) ? parseInt(window.localStorage.getItem(ADMIN_BALANCE)!) : 0
-    }
-
-    
+    },
+    lotteryTickets: [],
+    draws: []
 }
 
 type StateContextProps = {

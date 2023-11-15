@@ -23,8 +23,13 @@ const MainComponent: FC<any> = () => {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'left'}}>
                     {HEADER}
                 </Typography>
-                <Button color="inherit" onClick={() => setIsAdmin(false)}>Player</Button>
-                <Button color="inherit" onClick={() => setIsAdmin(true)}>Admin</Button>
+                <Button color="inherit" style={{maxWidth: '130px', minWidth: '130px'}} 
+                    onClick={() => setIsAdmin(false)}>Player</Button>
+                <Button color="inherit" style={{maxWidth: '130px', minWidth: '130px'}} 
+                    onClick={() => setIsAdmin(true)}>Admin</Button>
+
+                <Button color="inherit" style={{maxWidth: '130px', minWidth: '130px'}}>Reset round</Button>
+                <Button color="inherit" style={{maxWidth: '130px', minWidth: '130px'}}>Reset game</Button>
             </Toolbar>
         </AppBar>
         </Box>

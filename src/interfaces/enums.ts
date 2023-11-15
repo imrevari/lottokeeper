@@ -1,5 +1,6 @@
 export const enum UserType {
     PLAYER,
+    FAKE_PLAYER,
     ADMIN
   }
 

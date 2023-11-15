@@ -1,16 +1,29 @@
 import { Actions, UserType } from "./enums";
 
 export interface User {
+    id?: number;
     userType: UserType;
     userName: string;
     balance: number;
 }
 
+export interface LotteryTicket {
+  user: User,
+  purchased: Date,
+  selectedNumbers: number[],
+  drawConducted: boolean
+}
+
+export interface Draw {
+  conductedOn: Date,
+  selectedNumbers: number[]
+}
 
 export interface State {
     player: User;
     admin: User;
-
+    lotteryTickets: LotteryTicket[],
+    draws: Draw[]
 }
 
 export interface StateContextType {
