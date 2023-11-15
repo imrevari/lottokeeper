@@ -1,4 +1,4 @@
-import { Actions } from '../interfaces/enums';
+import { Actions, UserType } from '../interfaces/enums';
 import {State, Action} from '../interfaces/interfaces'
 
 const reducer = (state: State, action: Action): State => {
@@ -7,8 +7,14 @@ const reducer = (state: State, action: Action): State => {
         case Actions.PURCHASE_TICKET:
             return {
                 ...state,
-                player: {...state.player, balance: state.player.balance - action.payload.amount},
-                admin: {...state.admin, balance: state.admin.balance + action.payload.amount}
+                player: {...state.player, 
+                    balance: action.payload.newTicket.user.userType === UserType.FAKE_PLAYER
+                    ?
+                    state.player.balance
+                    :
+                    state.player.balance  - action.payload.amount},
+                admin: {...state.admin, balance: state.admin.balance + action.payload.amount},
+                lotteryTickets: [...state.lotteryTickets, action.payload.newTicket]
             }
         case Actions.PLAYER_WINS:
             return {

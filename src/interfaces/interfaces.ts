@@ -36,9 +36,16 @@ export interface StateContextType {
 
 export type Action =
 | {
-    type: Actions.PLAYER_WINS | Actions.PURCHASE_TICKET;
+    type: Actions.PLAYER_WINS;
     payload: {
       amount: number;
+    };
+  }
+| {
+    type: Actions.PURCHASE_TICKET;
+    payload: {
+      amount: number;
+      newTicket: LotteryTicket;
     };
   }
 | {

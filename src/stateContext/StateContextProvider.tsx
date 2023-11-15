@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect, useReducer } from 'react';
-import { State } from '../interfaces/interfaces';
+import { LotteryTicket, State } from '../interfaces/interfaces';
 import { Actions, UserType } from '../interfaces/enums';
 import reducer from './reducer';
 import { StateContext } from './StateContext';
@@ -46,11 +46,12 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
 
 
 
-    const purchaseTicket = useCallback((amount: number) => {
+    const purchaseTicket = useCallback((amount: number, newTicket: LotteryTicket) => {
         dispatch({
           type: Actions.PURCHASE_TICKET,
           payload: {
-            amount: amount
+            amount: amount,
+            newTicket: newTicket
           }
         });
     }, []);
