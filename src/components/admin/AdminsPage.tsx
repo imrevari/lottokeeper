@@ -1,13 +1,21 @@
 import { Box, Button } from '@mui/material';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import AdminHeader from './AdminHeader';
 import AllTicketsTable from './AllTicketsTable';
 import { useStateContext } from '../../stateContext/StateContext';
+import RandomGeneratorPopupWindow from './RandomGeneratorPopupWindow';
 
 
 const AdminsPage: FC<any> = () => {
 
     const {lotteryTickets} = useStateContext()
+
+    const [isRandomGeneratorOpened, setIsRandomgeneratorOpened] = useState<boolean>(false)
+
+
+    const generateRandomGames = () => {
+        setIsRandomgeneratorOpened(true)
+    }
 
     return(<>
     <AdminHeader />
@@ -16,6 +24,7 @@ const AdminsPage: FC<any> = () => {
         <div>
                 <Button color="inherit" variant='outlined'
                 sx={{marginRight: '9px', marginTop: '15px', maxWidth: '250px', minWidth: '250px'}}
+                onClick={generateRandomGames}
                     >Generate random games</Button>
 
                 <Button color="inherit" variant='outlined'
@@ -24,7 +33,7 @@ const AdminsPage: FC<any> = () => {
         </div>
         <AllTicketsTable rows={lotteryTickets}/>
 
-            {/* <PopupWindow open={open} setOpen={setOpen}/> */}
+            <RandomGeneratorPopupWindow open={isRandomGeneratorOpened} setOpen={setIsRandomgeneratorOpened}/>
         </Box>
 
 

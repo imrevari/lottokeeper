@@ -3,7 +3,7 @@ import { LotteryTicket, State } from '../interfaces/interfaces';
 import { Actions, UserType } from '../interfaces/enums';
 import reducer from './reducer';
 import { StateContext } from './StateContext';
-import { ADMIN_BALANCE, ADMIN_NAME, PLAYER_BALANCE, PLAYER_NAME } from '../interfaces/constants';
+import { ADMIN_BALANCE, PLAYER_BALANCE, PLAYER_NAME } from '../interfaces/constants';
 
 
 const initState: State = {
@@ -30,7 +30,7 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
   
     const [state, dispatch] = useReducer(reducer, initState);
 
-    const {player, admin, lotteryTickets} = state;
+    const {player, admin, lotteryTickets, draws} = state;
 
     useEffect(() => {
       const {userName, balance} = player;
@@ -82,7 +82,8 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
                     changeName,
                     player,
                     admin,
-                    lotteryTickets
+                    lotteryTickets,
+                    draws
                 }}>
                 {children}
             </StateContext.Provider>
