@@ -1,20 +1,21 @@
-import { FC, useCallback, useReducer } from 'react';
+import { FC, useCallback, useEffect, useReducer } from 'react';
 import { State } from '../interfaces/interfaces';
 import { Actions, UserType } from '../interfaces/enums';
 import reducer from './reducer';
 import { StateContext } from './StateContext';
+import { ADMIN_BALANCE, ADMIN_NAME, PLAYER_BALANCE, PLAYER_NAME } from '../interfaces/constants';
 
 
 const initState: State = {
     player: {
         userType: UserType.PLAYER,
-        userName: "",
-        balance: 10_000
+        userName: window.localStorage.getItem(PLAYER_NAME) ?? '',
+        balance: window.localStorage.getItem(PLAYER_BALANCE) ? parseInt(window.localStorage.getItem(PLAYER_BALANCE)!) : 10_000
     },
     admin: {
         userType: UserType.ADMIN,
-        userName: "",
-        balance: 0
+        userName: window.localStorage.getItem(ADMIN_NAME) ?? '',
+        balance: window.localStorage.getItem(ADMIN_BALANCE) ? parseInt(window.localStorage.getItem(ADMIN_BALANCE)!) : 0
     }
 
     
@@ -26,8 +27,24 @@ type StateContextProps = {
 
 
 const StateContextProvider: FC<StateContextProps> = ({children}) => {
-
+  
     const [state, dispatch] = useReducer(reducer, initState);
+
+    const {player, admin} = state;
+
+    useEffect(() => {
+      const {userName, balance} = player;
+      window.localStorage.setItem(PLAYER_NAME, userName)
+      window.localStorage.setItem(PLAYER_BALANCE, balance.toString())
+    }, [player])
+
+    useEffect(() => {
+      const {userName, balance} = admin;
+      window.localStorage.setItem(ADMIN_NAME, userName)
+      window.localStorage.setItem(ADMIN_BALANCE, balance.toString())
+    }, [admin])
+
+
 
     const purchaseTicket = useCallback((amount: number) => {
         dispatch({
@@ -55,9 +72,6 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
           }
         });
     }, []);
-
-    const {player, admin} = state;
-
 
     return(
         <>
