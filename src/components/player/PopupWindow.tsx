@@ -1,5 +1,5 @@
 
-import { Avatar, AvatarGroup  } from '@mui/material';
+import { Alert, Avatar, AvatarGroup, Snackbar  } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
@@ -18,9 +18,12 @@ const PopupWindow: FC<any> = ({open, setOpen}) => {
 
     const {player, purchaseTicket} = useStateContext()
 
+    const [snackBarOpened, setSnackBarOpened] = useState<boolean>(false)
 
+    const handleSnackBarClose = () =>{
+        setSnackBarOpened(false);
+    }
   
-
   const numbers = Array.from({length: 51}, (_, i) => i + 1);
 
   const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
@@ -34,7 +37,7 @@ const PopupWindow: FC<any> = ({open, setOpen}) => {
             }
         setSelectedNumbers(arrayCopy)
     }else if(selectedNumbers.length >= 5){
-        //make message it is larges
+        setSnackBarOpened(true)
     }else{
         setSelectedNumbers(prevState => [...prevState, number])
     }
@@ -42,12 +45,14 @@ const PopupWindow: FC<any> = ({open, setOpen}) => {
 
   const handleClose = () => {
     setSelectedNumbers([])
+    handleSnackBarClose()
     setOpen(false);
   };
 
   const buyTicket = () =>{
     if(selectedNumbers.length < 5) {
         //make notification
+        setSnackBarOpened(true)
     }else{
         purchaseTicket(PRICE_OF_TICKET, {
             user: player,
@@ -66,10 +71,12 @@ const PopupWindow: FC<any> = ({open, setOpen}) => {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>Optional sizes</DialogTitle>
+        <DialogTitle>Buy Lottery ticket</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            You can set my maximum width and whether to adapt or not.
+          <DialogContentText
+            sx={{marginBottom: '8px'}}
+          >
+            Select five numbers from 1 to 51.
           </DialogContentText>
           <Box
             noValidate
@@ -97,6 +104,7 @@ const PopupWindow: FC<any> = ({open, setOpen}) => {
         <DialogActions>
             <Button variant='outlined'
                 style={{maxWidth: '110px', minWidth: '110px'}}
+                disabled={selectedNumbers.length < 5}
                 onClick={buyTicket}>Purchase</Button>
             <Button variant='outlined'
                 color='error'
@@ -104,6 +112,19 @@ const PopupWindow: FC<any> = ({open, setOpen}) => {
                 onClick={handleClose}>Close</Button>
         </DialogActions>
       </Dialog>
+
+      <Snackbar
+        open={snackBarOpened}
+        autoHideDuration={6000}
+        onClose={handleSnackBarClose}
+        // action={action}
+        >
+        <Alert severity="error">{selectedNumbers.length >= 5 ? 
+        'Cannot select more than 5'
+        :
+        'Must select five numbers'    
+    }</Alert>
+        </Snackbar>
     </Fragment>
   );
 }
