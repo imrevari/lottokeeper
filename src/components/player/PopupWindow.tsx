@@ -1,4 +1,5 @@
 
+import { Avatar, AvatarGroup  } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
@@ -17,7 +18,28 @@ const PopupWindow: FC<any> = ({open, setOpen}) => {
     setOpen(false);
   };
 
+  const numbers = Array.from({length: 51}, (_, i) => i + 1);
 
+  const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
+
+  const addToSelectedList = (number: number) => {
+    if(selectedNumbers.includes(number)){
+        const arrayCopy = [...selectedNumbers]
+        const index = arrayCopy.indexOf(number);
+            if (index > -1) {
+                arrayCopy.splice(index, 1);
+            }
+        setSelectedNumbers(arrayCopy)
+    }else if(selectedNumbers.length >= 5){
+        //make message it is larges
+    }else{
+        setSelectedNumbers(prevState => [...prevState, number])
+    }
+
+
+
+    
+  }
 
   return (
     <Fragment>
@@ -36,13 +58,22 @@ const PopupWindow: FC<any> = ({open, setOpen}) => {
             component="form"
             sx={{
               display: 'flex',
-              flexDirection: 'column',
-              m: 'auto',
-              width: 'fit-content',
+              width: 'auto',
+              maxWidth: '600px',
+              flexWrap: 'wrap'
+              
             }}
           >
-
-
+                {numbers.map(e => 
+                    <Avatar
+                    sx= {{
+                        margin: '1.5px',
+                        bgcolor: selectedNumbers.includes(e) ? 'red' : ''
+                    }}
+                    onClick={() => addToSelectedList(e)}
+                    >{e}</Avatar>
+                    
+                    )}
           </Box>
         </DialogContent>
         <DialogActions>
