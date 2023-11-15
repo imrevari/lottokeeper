@@ -27,7 +27,7 @@ export interface State {
 }
 
 export interface StateContextType {
-    purchaseTicket: (amount: number) => void;
+    purchaseTicket: (amount: number, newTicket: LotteryTicket) => void;
     winLottary: (amount: number) => void;
     changeName: (newName: string, forPlayer: boolean) => void;
     player: User;

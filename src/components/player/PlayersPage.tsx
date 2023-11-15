@@ -1,15 +1,16 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useStateContext } from '../../stateContext/StateContext';
 
 import PlayerHeader from './PlayerHeader';
 import { Box, Button, Container } from '@mui/material';
+import PopupWindow from './PopupWindow';
 
 
 const PlayersPage: FC<any> = () => {
 
-    const {player, purchaseTicket} = useStateContext()
+    const {player} = useStateContext()
 
-    const {balance} = player
+    const [open, setOpen] = useState<boolean>(false);
 
 
     return(<>
@@ -19,9 +20,10 @@ const PlayersPage: FC<any> = () => {
 
             <Button color="inherit" variant='outlined'
                     style={{maxWidth: '140px', minWidth: '140px'}}
+                    onClick={() => setOpen(true)}
             >Buy ticket</Button>
             
-            
+            <PopupWindow open={open} setOpen={setOpen}/>
         </Box>
 
 
