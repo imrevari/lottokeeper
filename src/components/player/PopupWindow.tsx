@@ -8,15 +8,18 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { FC, Fragment, useState } from 'react';
+import { useStateContext } from '../../stateContext/StateContext';
+import { PRICE_OF_TICKET } from '../../interfaces/constants';
 
 
 
 const PopupWindow: FC<any> = ({open, setOpen}) => {
 
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+    const {player, purchaseTicket} = useStateContext()
+
+
+  
 
   const numbers = Array.from({length: 51}, (_, i) => i + 1);
 
@@ -35,10 +38,25 @@ const PopupWindow: FC<any> = ({open, setOpen}) => {
     }else{
         setSelectedNumbers(prevState => [...prevState, number])
     }
+  }
 
+  const handleClose = () => {
+    setSelectedNumbers([])
+    setOpen(false);
+  };
 
-
-    
+  const buyTicket = () =>{
+    if(selectedNumbers.length < 5) {
+        //make notification
+    }else{
+        purchaseTicket(PRICE_OF_TICKET, {
+            user: player,
+            purchased: new Date(),
+            selectedNumbers: selectedNumbers.sort((a, b) => a - b),
+            drawConducted: false
+        })
+        handleClose()
+    }
   }
 
   return (
@@ -77,7 +95,13 @@ const PopupWindow: FC<any> = ({open, setOpen}) => {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
+            <Button variant='outlined'
+                style={{maxWidth: '110px', minWidth: '110px'}}
+                onClick={buyTicket}>Purchase</Button>
+            <Button variant='outlined'
+                color='error'
+                style={{maxWidth: '110px', minWidth: '110px'}}
+                onClick={handleClose}>Close</Button>
         </DialogActions>
       </Dialog>
     </Fragment>

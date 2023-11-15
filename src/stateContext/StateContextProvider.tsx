@@ -44,6 +44,10 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
       window.localStorage.setItem(ADMIN_BALANCE, balance.toString())
     }, [admin])
 
+    useEffect(() => {
+      console.log(JSON.stringify(state))
+    }, [state])
+
 
 
     const purchaseTicket = useCallback((amount: number, newTicket: LotteryTicket) => {
