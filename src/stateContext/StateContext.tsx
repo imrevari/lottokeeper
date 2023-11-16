@@ -26,6 +26,8 @@ export const StateContext = createContext<StateContextType>({
     draw: () => {},
     resetRound: () => {},
     resetGame: () => {},
+    lotteryLoses: () => {},
+    updateDrawnTickets: () => {},
     player,
     admin,
     lotteryTickets,

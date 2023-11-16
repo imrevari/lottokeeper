@@ -36,7 +36,6 @@ const reducer = (state: State, action: Action): State => {
             return {
                 ...state,
                 player: {...state.player, balance: state.player.balance + action.payload.amount},
-                admin: {...state.admin, balance: state.admin.balance - action.payload.amount}
             }
         case Actions.CHANGE_PLAYER_NAME:
             return {
@@ -63,8 +62,17 @@ const reducer = (state: State, action: Action): State => {
             return {
                 ...newState
             }
-        // update lotteryTickets
-        // lottery loses
+        case Actions.ADMIN_LOSES:
+            return {
+                ...state,
+            admin: {...state.admin, balance: state.admin.balance - action.payload.amount}
+            }
+        case Actions.UPDATE_DRAWN_TICKETS:
+            return {
+                ...state,
+                lotteryTickets: [...state.lotteryTickets.filter( ({drawConducted}) => !drawConducted),
+                     ...action.payload.updatedTickets]
+            }
         default:
             return state;
 

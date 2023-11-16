@@ -43,8 +43,10 @@ export interface StateContextType {
     winLottary: (amount: number) => void;
     changeName: (newName: string, forPlayer: boolean) => void;
     draw: (newDraw: Draw) => void;
-    resetRound: () => void,
-    resetGame: () => void,
+    resetRound: () => void;
+    resetGame: () => void;
+    lotteryLoses: (amount: number) => void;
+    updateDrawnTickets: (tickets: LotteryTicket[]) => void;
     player: User;
     admin: User;
     lotteryTickets: LotteryTicket[];
@@ -56,13 +58,19 @@ export type Action =
   type: Actions.RESET_GAME | Actions.RESET_ROUND;
 }
 | {
+  type: Actions.UPDATE_DRAWN_TICKETS;
+  payload: {
+    updatedTickets: LotteryTicket[];
+  };
+} 
+| {
   type: Actions.DRAW;
   payload: {
     newDraw: Draw;
   };
 }
 | {
-    type: Actions.PLAYER_WINS;
+    type: Actions.PLAYER_WINS | Actions.ADMIN_LOSES;
     payload: {
       amount: number;
     };

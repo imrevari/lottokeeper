@@ -11,5 +11,7 @@ export const enum UserType {
     CHANGE_ADMIN_NAME,
     DRAW,
     RESET_ROUND,
-    RESET_GAME
+    RESET_GAME,
+    ADMIN_LOSES,
+    UPDATE_DRAWN_TICKETS
   }

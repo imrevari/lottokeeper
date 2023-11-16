@@ -96,6 +96,24 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
       });
     }, []);
 
+    const lotteryLoses = useCallback((amount: number) => {
+      dispatch({
+        type:  Actions.ADMIN_LOSES,
+        payload: {
+          amount: amount
+        }
+      });
+    }, []);
+
+    const updateDrawnTickets = useCallback((tickets: LotteryTicket[]) => {
+      dispatch({
+        type:  Actions.UPDATE_DRAWN_TICKETS,
+        payload: {
+          updatedTickets: tickets
+        }
+      });
+    }, []);
+
     return(
         <>
             <StateContext.Provider
@@ -106,6 +124,8 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
                     draw,
                     resetRound,
                     resetGame,
+                    lotteryLoses,
+                    updateDrawnTickets,
                     player,
                     admin,
                     lotteryTickets,
