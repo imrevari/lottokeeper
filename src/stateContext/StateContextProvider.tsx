@@ -45,8 +45,6 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
       window.localStorage.setItem(ADMIN_BALANCE, balance.toString())
     }, [admin])
 
-
-
     const purchaseTicket = useCallback((amount: number, newTicket: LotteryTicket) => {
         dispatch({
           type: Actions.PURCHASE_TICKET,

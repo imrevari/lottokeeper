@@ -10,22 +10,21 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { generateRandomNumbers } from '../../commonFunctions/functions';
 import { Typography } from '@mui/material';
 import { useStateContext } from '../../stateContext/StateContext';
-import { Result } from '../../interfaces/interfaces';
+import { LotteryTicket, Result } from '../../interfaces/interfaces';
 import ResultInfo from './ResultInfo';
+import { UserType } from '../../interfaces/enums';
 
 
 
 const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
 
-  const {draw, lotteryTickets} = useStateContext()
+  const {draw, lotteryTickets, updateDrawnTickets, lotteryLoses, winLottary} = useStateContext()
   const [drownNumbers, setDrownNumbers] = useState<number[] | null>(null)
   const [winResults, setWinResults] = useState<Result | null>(null)
 
   const unplayedTickets = useMemo(() => {
     return lotteryTickets.filter(({drawConducted}) => !drawConducted)
   }, [lotteryTickets])
-
-  console.log(lotteryTickets.length)
 
   const checkForWinningTickets = (numbers: number[]) => {
     let tickets = [...unplayedTickets]
@@ -59,6 +58,18 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
     return {tickets, winnersOf5, winnersOf4, winnersOf3, winnersOf2}
   }
 
+  const applyWinAmountOfPlayer = (tickets: LotteryTicket[]) => {
+    let totalAMountWon = 0;
+    tickets.forEach(ticket => {
+      if(ticket.user.userType === UserType.PLAYER && ticket.amountWon){
+        totalAMountWon += ticket.amountWon
+      }
+    });
+    if(totalAMountWon > 0){
+      winLottary(totalAMountWon)
+    }
+  }
+
   const drawNumbers = () =>{
     const numbers = generateRandomNumbers()
     
@@ -84,7 +95,9 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
       winnersOf4: winnersOf4, 
       winnersOf5: winnersOf5
     })
-    //update all the tickets purchased so far
+    updateDrawnTickets(tickets)
+    lotteryLoses(totalWonAmount)
+    applyWinAmountOfPlayer(tickets)
   }
 
 
