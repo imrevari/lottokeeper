@@ -10,6 +10,7 @@ import { FC, Fragment, useState } from 'react';
 import { UserType } from '../../interfaces/enums';
 import { useStateContext } from '../../stateContext/StateContext';
 import { generateRandomNumbers } from '../../commonFunctions/functions';
+import { MAX_ROBOT_DRAWS, PRICE_OF_TICKET } from '../../interfaces/constants';
 
 
 
@@ -20,13 +21,14 @@ const RandomGeneratorPopupWindow: FC<any> = ({open, setOpen}) => {
     const [number, setNumber] = useState<number>(1)
 
   const handleClose = () => {
+    setNumber(1);
     setOpen(false);
   };
 
   const handleNumberChange = (value: string) => {
     const number = parseInt(value)
-    if(number > 25){
-        setNumber(25)
+    if(number > MAX_ROBOT_DRAWS){
+        setNumber(MAX_ROBOT_DRAWS)
     }else if(Number.isNaN(number)){
         setNumber(1)
     }else{
@@ -37,7 +39,7 @@ const RandomGeneratorPopupWindow: FC<any> = ({open, setOpen}) => {
   const generateRandomPurchases = () =>{
     for (let i = 0; i < number; i++) {
         const numbers = generateRandomNumbers()
-        purchaseTicket(500, {
+        purchaseTicket(PRICE_OF_TICKET, {
             user: {userType: UserType.FAKE_PLAYER, userName: '', balance: 0},
             purchased: new Date(),
             selectedNumbers: numbers.sort((a, b) => a - b),
@@ -59,7 +61,7 @@ const RandomGeneratorPopupWindow: FC<any> = ({open, setOpen}) => {
           <DialogContentText
             sx={{marginBottom: '8px'}}
           >
-            Select the number of players you would like to generate games for (1 to 25).
+            {`Select the number of players you would like to generate games for (1 to ${MAX_ROBOT_DRAWS}).`}
           </DialogContentText>
           <Box
             noValidate
@@ -76,7 +78,7 @@ const RandomGeneratorPopupWindow: FC<any> = ({open, setOpen}) => {
                     type='number'
                     value={number}
                     min={1}
-                    max={25}
+                    max={MAX_ROBOT_DRAWS}
                     onChange={(e) => handleNumberChange(e.target.value)}
                 /> 
                 <Button variant='outlined'

@@ -13,6 +13,7 @@ import { useStateContext } from '../../stateContext/StateContext';
 import { LotteryTicket, Result } from '../../interfaces/interfaces';
 import ResultInfo from './ResultInfo';
 import { UserType } from '../../interfaces/enums';
+import { PRICE_OF_TICKET, PRIZE_FOR_FIVE, PRIZE_FOR_FOUR, PRIZE_FOR_THREE, PRIZE_FOR_TWO } from '../../interfaces/constants';
 
 
 
@@ -41,16 +42,16 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
 
       if(matchingNumbers.length === 2){
         winnersOf2++
-        element.amountWon = 10
+        element.amountWon = PRIZE_FOR_TWO
       }else if(matchingNumbers.length === 3){
         winnersOf3++
-        element.amountWon = 25
+        element.amountWon = PRIZE_FOR_THREE
       }else if(matchingNumbers.length === 4){
         winnersOf4++
-        element.amountWon = 50
+        element.amountWon = PRIZE_FOR_FOUR
       }else if(matchingNumbers.length === 5){
         winnersOf5++
-        element.amountWon = 100
+        element.amountWon = PRIZE_FOR_FIVE
       }
     });
 
@@ -83,13 +84,13 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
     const results = checkForWinningTickets(numbers)
     const {tickets, winnersOf2, winnersOf3, winnersOf4, winnersOf5} = results;
 
-    const totalWonAmount = (winnersOf2 * 10) + (winnersOf3 * 25) + (winnersOf4 * 50) + (winnersOf5 * 100)
+    const totalWonAmount = (winnersOf2 * PRIZE_FOR_TWO) + (winnersOf3 * PRIZE_FOR_THREE) + (winnersOf4 * PRIZE_FOR_FOUR) + (winnersOf5 * PRIZE_FOR_FIVE)
 
     setWinResults({
       totalTickets: tickets.length,
-      totalIncome: tickets.length * 500,
+      totalIncome: tickets.length * PRICE_OF_TICKET,
       totalWonAmount: totalWonAmount,
-      totalProfit: (tickets.length * 500) - totalWonAmount,
+      totalProfit: (tickets.length * PRICE_OF_TICKET) - totalWonAmount,
       winnersOf2: winnersOf2,
       winnersOf3: winnersOf3,
       winnersOf4: winnersOf4, 
