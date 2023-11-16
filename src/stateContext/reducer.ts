@@ -68,6 +68,8 @@ const reducer = (state: State, action: Action): State => {
             admin: {...state.admin, balance: state.admin.balance - action.payload.amount}
             }
         case Actions.UPDATE_DRAWN_TICKETS:
+            // state.lotteryTickets.filter( ({drawConducted}) => !drawConducted)
+            // console.log([...state.lotteryTickets.filter( ({drawConducted}) => drawConducted)])
             return {
                 ...state,
                 lotteryTickets: [...state.lotteryTickets.filter( ({drawConducted}) => !drawConducted),

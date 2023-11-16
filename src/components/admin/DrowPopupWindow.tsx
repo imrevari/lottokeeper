@@ -28,7 +28,7 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
   }, [lotteryTickets])
 
   const checkForWinningTickets = (numbers: number[]) => {
-    let tickets = [...unplayedTickets]
+    const tickets =  [...Array.from(unplayedTickets)];
     let winnersOf5 = 0;
     let winnersOf4 = 0;
     let winnersOf3 = 0;
@@ -96,9 +96,9 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
       winnersOf4: winnersOf4, 
       winnersOf5: winnersOf5
     })
-    updateDrawnTickets(tickets)
     lotteryLoses(totalWonAmount)
     applyWinAmountOfPlayer(tickets)
+    //updateDrawnTickets(tickets)
   }
 
 

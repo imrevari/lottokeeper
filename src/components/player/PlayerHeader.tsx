@@ -40,6 +40,11 @@ const PlayerHeader: FC<any> = () => {
                         <div>
                             {isEditMode ? 
                             <Input value={name ? name : `unset name`}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter'){
+                                    updateName()
+                                }
+                            }}
                             onChange={(e) => setName(e.target.value)}/> :
                             (userName ? userName : `unset name`).concat(`, your remaining balance is: ${balance}`)
                             }

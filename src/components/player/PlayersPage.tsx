@@ -6,6 +6,7 @@ import { UserType } from '../../interfaces/enums';
 import PlayerHeader from './PlayerHeader';
 import PopupWindow from './PopupWindow';
 import PurchasedTicketsTable from './PurchasedTicketsTable';
+import AllTicketsTable from './AllTicketsTable';
 
 
 const PlayersPage: FC<any> = () => {
@@ -38,7 +39,16 @@ const PlayersPage: FC<any> = () => {
                             onClick={buyTicket}
                     >Buy ticket</Button>
             </ButtonGroup>
+
+            {draws.length === 0
+            ?
             <PurchasedTicketsTable rows={ticketsOfThePlayer}/>
+            :
+            <AllTicketsTable rows={ticketsOfThePlayer}/>
+            }
+
+            
+            
             <PopupWindow open={open} setOpen={setOpen}/>
 
             <Snackbar
