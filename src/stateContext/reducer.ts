@@ -1,5 +1,21 @@
 import { Actions, UserType } from '../interfaces/enums';
-import {State, Action} from '../interfaces/interfaces'
+import { Action, State } from '../interfaces/interfaces';
+
+
+const newState: State = {
+    player: {
+        userType: UserType.PLAYER,
+        userName: '',
+        balance: 10_000
+    },
+    admin: {
+        userType: UserType.ADMIN,
+        userName: 'Admin',
+        balance: 0
+    },
+    lotteryTickets: [],
+    draws: []
+  }
 
 const reducer = (state: State, action: Action): State => {
 
@@ -37,6 +53,18 @@ const reducer = (state: State, action: Action): State => {
                 ...state, 
                 draws: [...state.draws, action.payload.newDraw]
             }
+        case Actions.RESET_ROUND:
+            return {
+                ...state,
+                lotteryTickets: [],
+                draws: []
+            }
+        case Actions.RESET_GAME:
+            return {
+                ...newState
+            }
+        // update lotteryTickets
+        // lottery loses
         default:
             return state;
 

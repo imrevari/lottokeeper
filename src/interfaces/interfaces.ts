@@ -43,6 +43,8 @@ export interface StateContextType {
     winLottary: (amount: number) => void;
     changeName: (newName: string, forPlayer: boolean) => void;
     draw: (newDraw: Draw) => void;
+    resetRound: () => void,
+    resetGame: () => void,
     player: User;
     admin: User;
     lotteryTickets: LotteryTicket[];
@@ -50,6 +52,9 @@ export interface StateContextType {
   }
 
 export type Action =
+| {
+  type: Actions.RESET_GAME | Actions.RESET_ROUND;
+}
 | {
   type: Actions.DRAW;
   payload: {

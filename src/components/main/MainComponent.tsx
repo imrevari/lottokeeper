@@ -8,10 +8,13 @@ import Typography from '@mui/material/Typography';
 import { HEADER } from '../../interfaces/constants';
 import AdminsPage from '../admin/AdminsPage';
 import PlayersPage from '../player/PlayersPage';
+import { useStateContext } from '../../stateContext/StateContext';
 
 const MainComponent: FC<any> = () => {
 
     const [isAdmin, setIsAdmin] = useState<boolean>(false)
+
+    const {resetGame, resetRound} = useStateContext()
 
     
     return(
@@ -28,8 +31,13 @@ const MainComponent: FC<any> = () => {
                 <Button color="inherit" style={{maxWidth: '130px', minWidth: '130px'}} 
                     onClick={() => setIsAdmin(true)}>Admin</Button>
 
-                <Button color="inherit" style={{maxWidth: '130px', minWidth: '130px'}}>Reset round</Button>
-                <Button color="inherit" style={{maxWidth: '130px', minWidth: '130px'}}>Reset game</Button>
+                <Button color="inherit" 
+                    style={{maxWidth: '130px', minWidth: '130px'}}
+                    onClick={() => resetRound()}>Reset round</Button>
+                <Button color="inherit" 
+                    style={{maxWidth: '130px', minWidth: '130px'}}
+                    onClick={() => resetGame()}
+                    >Reset game</Button>
             </Toolbar>
         </AppBar>
         </Box>

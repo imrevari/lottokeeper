@@ -9,5 +9,7 @@ export const enum UserType {
     PLAYER_WINS,
     CHANGE_PLAYER_NAME,
     CHANGE_ADMIN_NAME,
-    DRAW
+    DRAW,
+    RESET_ROUND,
+    RESET_GAME
   }

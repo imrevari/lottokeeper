@@ -82,7 +82,19 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
           newDraw: newDraw
         }
       });
-  }, []);
+    }, []);
+
+    const resetRound = useCallback(() => {
+      dispatch({
+        type:  Actions.RESET_ROUND
+      });
+    }, []);
+
+    const resetGame = useCallback(() => {
+      dispatch({
+        type:  Actions.RESET_GAME
+      });
+    }, []);
 
     return(
         <>
@@ -92,6 +104,8 @@ const StateContextProvider: FC<StateContextProps> = ({children}) => {
                     winLottary,
                     changeName,
                     draw,
+                    resetRound,
+                    resetGame,
                     player,
                     admin,
                     lotteryTickets,
