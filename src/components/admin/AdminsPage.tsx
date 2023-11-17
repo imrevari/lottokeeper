@@ -1,10 +1,10 @@
 import { Box, Button } from '@mui/material';
 import { FC, useState } from 'react';
-import AdminHeader from './AdminHeader';
-import AllTicketsTable from './AllTicketsTable';
 import { useStateContext } from '../../stateContext/StateContext';
-import RandomGeneratorPopupWindow from './RandomGeneratorPopupWindow';
+import AdminHeader from './AdminHeader';
+import AllTicketsAdminTable from './AllTicketsAdminTable';
 import DrowPopupWindow from './DrowPopupWindow';
+import RandomGeneratorPopupWindow from './RandomGeneratorPopupWindow';
 
 
 const AdminsPage: FC<any> = () => {
@@ -42,7 +42,7 @@ const AdminsPage: FC<any> = () => {
         </div>
         {draws.length === 0
         ?
-        <AllTicketsTable rows={lotteryTickets.sort( ({user: {userType: a}}, {user: {userType: b}}) => a - b)}/>
+        <AllTicketsAdminTable rows={lotteryTickets.sort( ({user: {userType: a}}, {user: {userType: b}}) => a - b)}/>
         :
         <></>}
         <DrowPopupWindow open={isDrawOpened} setOpen={setIsDrawOpened}/>

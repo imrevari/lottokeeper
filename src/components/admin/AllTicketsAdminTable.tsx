@@ -13,7 +13,7 @@ interface TableProps {
     rows: LotteryTicket[]
 }
 
-const AllTicketsTable: FC<TableProps> = ({rows}) => {
+const AllTicketsAdminTable: FC<TableProps> = ({rows}) => {
   return (
     <TableContainer>
       <Table sx={{ minWidth: '650px', maxWidth: '650px' }} aria-label="simple table">
@@ -42,6 +42,6 @@ const AllTicketsTable: FC<TableProps> = ({rows}) => {
   );
 }
 
-AllTicketsTable.displayName = 'AllTicketsTable';
+AllTicketsAdminTable.displayName = 'AllTicketsAdminTable';
 
-export default AllTicketsTable;
+export default AllTicketsAdminTable;
