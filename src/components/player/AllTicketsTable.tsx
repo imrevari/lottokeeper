@@ -1,3 +1,4 @@
+import { TableSortLabel } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -6,7 +7,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { FC, useMemo, useState } from 'react';
 import { LotteryTicket } from '../../interfaces/interfaces';
-import { TableSortLabel } from '@mui/material';
 
 
 interface TableProps {
@@ -21,7 +21,14 @@ const AllTicketsTable: FC<TableProps> = ({rows}) => {
   const [localRows, setLocalRows] = useState<LotteryTicket[]>(rows)
 
   const sortRows = () => {
-
+    setIsAsc(prevState => !prevState)
+    const rowClone = [...localRows];
+    rowClone.sort(({winningNumbers: a}, {winningNumbers: b} ) => 
+    isAsc ?
+    (b ? b.length : 0) - (a ? a.length : 0)
+    :
+    (a ? a.length : 0) - (b ? b.length : 0))
+    setLocalRows(rowClone);
   }
 
   const amountWon = useMemo(() => {
@@ -38,17 +45,13 @@ const AllTicketsTable: FC<TableProps> = ({rows}) => {
             <TableCell sx={{width: '25%'}}>Date purchased</TableCell>
             <TableCell sx={{width: '20%'}}>selected numbers</TableCell>
             <TableCell sx={{width: '20%'}}>draw conducted</TableCell>
-            <TableCell sortDirection={isAsc ? 'asc' : 'desc'}>
+            <TableCell sx={{width: '20%'}}>
+            {`Successful guesses`}
               <TableSortLabel
-                sx={{width: '20%'}}
                 active={true}
-                direction={'desc'}
-                onClick={() => console.log('szia')}
-              >
-                 {`Successful guesses`}
-              </TableSortLabel>
-              
-             
+                direction={isAsc ? 'asc' : 'desc'}
+                onClick={sortRows}
+              />             
             </TableCell>
             <TableCell sx={{width: '15%'}}>Amount won</TableCell>
           </TableRow>
@@ -75,7 +78,6 @@ const AllTicketsTable: FC<TableProps> = ({rows}) => {
             <TableCell colSpan={5}></TableCell>
           </TableRow>
           <TableRow>
-
             <TableCell sx={{width: '75%'}} align="right">Totla amount:</TableCell>
             <TableCell sx={{width: '10%'}}></TableCell>
             <TableCell sx={{width: '15%'}}>{amountWon.toLocaleString()}</TableCell>
