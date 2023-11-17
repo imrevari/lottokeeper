@@ -29,6 +29,41 @@ const PlayersPage: FC<any> = () => {
     }, [lotteryTickets])
 
 
+    const tempRows = [
+        {drawConducted: false,
+            purchased: new Date(),
+            selectedNumbers: [1,2,3,4,5],
+            user: {userType: 0, userName: '', balance: 0}
+        },
+        {drawConducted: true,
+            purchased: new Date(),
+            selectedNumbers: [1,2,3,4,5],
+            user: {userType: 0, userName: '', balance: 0}
+        },
+        {drawConducted: false,
+            purchased: new Date(),
+            selectedNumbers: [1,2,3,4,5],
+            user: {userType: 0, userName: '', balance: 0},
+            winningNumbers: [1,2,3,4],
+            amountWon: 20
+        },
+        {drawConducted: false,
+            purchased: new Date(),
+            selectedNumbers: [1,2,3,4,5],
+            user: {userType: 0, userName: '', balance: 0},
+            winningNumbers: [1,2,3],
+            amountWon: 20
+        },
+        {drawConducted: false,
+            purchased: new Date(),
+            selectedNumbers: [1,2,3,4,5],
+            user: {userType: 0, userName: '', balance: 0},
+            winningNumbers: [1],
+            amountWon: 20
+        }
+    ]
+
+
     return(<>
         <PlayerHeader />
 
@@ -44,7 +79,7 @@ const PlayersPage: FC<any> = () => {
             ?
             <PurchasedTicketsTable rows={ticketsOfThePlayer}/>
             :
-            <AllTicketsTable rows={ticketsOfThePlayer}/>
+            <AllTicketsTable rows={tempRows}/>
             }
 
             
