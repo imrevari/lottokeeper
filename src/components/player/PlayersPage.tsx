@@ -3,10 +3,10 @@ import { useStateContext } from '../../stateContext/StateContext';
 
 import { Alert, Box, Button, ButtonGroup, Snackbar } from '@mui/material';
 import { UserType } from '../../interfaces/enums';
+import AllTicketsPlayerTable from './AllTicketsPlayerTable';
 import PlayerHeader from './PlayerHeader';
 import PopupWindow from './PopupWindow';
 import PurchasedTicketsTable from './PurchasedTicketsTable';
-import AllTicketsTable from './AllTicketsTable';
 
 
 const PlayersPage: FC<any> = () => {
@@ -79,7 +79,7 @@ const PlayersPage: FC<any> = () => {
             ?
             <PurchasedTicketsTable rows={ticketsOfThePlayer}/>
             :
-            <AllTicketsTable rows={tempRows}/>
+            <AllTicketsPlayerTable rows={ticketsOfThePlayer}/>
             }
 
             

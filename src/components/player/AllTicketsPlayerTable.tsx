@@ -13,7 +13,7 @@ interface TableProps {
     rows: LotteryTicket[]
 }
 
-const AllTicketsTable: FC<TableProps> = ({rows}) => {
+const AllTicketsPlayerTable: FC<TableProps> = ({rows}) => {
 
 
   const [isAsc, setIsAsc] = useState<boolean | null>(null)
@@ -88,6 +88,6 @@ const AllTicketsTable: FC<TableProps> = ({rows}) => {
   );
 }
 
-AllTicketsTable.displayName = 'AllTicketsTable';
+AllTicketsPlayerTable.displayName = 'AllTicketsPlayerTable';
 
-export default AllTicketsTable;
+export default AllTicketsPlayerTable;
