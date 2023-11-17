@@ -31,7 +31,7 @@ const PlayersPage: FC<any> = () => {
     return(<>
         <PlayerHeader />
 
-        <Box sx={{ flexGrow: 3 }}>
+        <Box>
             <ButtonGroup sx={{margin: '9px 0px 2px 0px'}}>
                 <Button color="inherit" variant='outlined'
                             style={{maxWidth: '140px', minWidth: '140px'}}

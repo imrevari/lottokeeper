@@ -12,6 +12,7 @@ import { useStateContext } from '../../stateContext/StateContext';
 
 const MainComponent: FC<any> = () => {
 
+    const [isLandingPage, setIsLandingPage] = useState<boolean>(false)
     const [isAdmin, setIsAdmin] = useState<boolean>(false)
 
     const {resetGame, resetRound} = useStateContext()
@@ -19,7 +20,7 @@ const MainComponent: FC<any> = () => {
     
     return(
         <>
-        <Box sx={{ flexGrow: 1 }}>
+        <Box>
         <AppBar position="static">
             <Toolbar>
             
@@ -38,6 +39,10 @@ const MainComponent: FC<any> = () => {
                     style={{maxWidth: '130px', minWidth: '130px'}}
                     onClick={() => resetGame()}
                     >Reset game</Button>
+                <Button color="inherit" 
+                    style={{maxWidth: '130px', minWidth: '130px'}}
+                    onClick={() => resetGame()}
+                    >My questions</Button>
             </Toolbar>
         </AppBar>
         </Box>

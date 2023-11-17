@@ -29,7 +29,7 @@ const AdminsPage: FC<any> = () => {
     return(<>
     <AdminHeader />
 
-    <Box sx={{ flexGrow: 3 }}>
+    <Box>
         <div>
                 <Button color="inherit" variant='outlined'
                 sx={{marginRight: '9px', marginTop: '15px', maxWidth: '250px', minWidth: '250px'}}

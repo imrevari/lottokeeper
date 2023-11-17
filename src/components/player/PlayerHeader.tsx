@@ -33,7 +33,7 @@ const PlayerHeader: FC<any> = () => {
     }
 
     return(<>
-        <Box sx={{ flexGrow: 3 }}>
+        <Box >
             <AppBar position="static" color='inherit'>
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'left'}}>
@@ -46,7 +46,7 @@ const PlayerHeader: FC<any> = () => {
                                 }
                             }}
                             onChange={(e) => setName(e.target.value)}/> :
-                            (userName ? userName : `unset name`).concat(`, your remaining balance is: ${balance}`)
+                            (userName ? userName : `unset name`).concat(`, your remaining balance is: ${balance.toLocaleString()}`)
                             }
                         </div>
                     </Typography>
