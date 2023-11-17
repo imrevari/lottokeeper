@@ -5,7 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { FC, useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import { LotteryTicket } from '../../interfaces/interfaces';
 
 
@@ -19,6 +19,8 @@ const AllTicketsPlayerTable: FC<TableProps> = ({rows}) => {
   const [isAsc, setIsAsc] = useState<boolean | null>(null)
 
   const [localRows, setLocalRows] = useState<LotteryTicket[]>(rows)
+
+  useEffect(() => {setLocalRows(rows)}, [rows])
 
   const sortRows = () => {
     setIsAsc(prevState => !prevState)
@@ -66,7 +68,7 @@ const AllTicketsPlayerTable: FC<TableProps> = ({rows}) => {
               </TableCell>
               <TableCell >{selectedNumbers.toLocaleString()}</TableCell>
               <TableCell align="left">{drawConducted ? 'yes' : 'no'}</TableCell>
-              <TableCell >{winningNumbers && (selectedNumbers.filter((number) => winningNumbers.includes(number))).toLocaleString()}</TableCell>
+              <TableCell >{winningNumbers && winningNumbers.toLocaleString()}</TableCell>
               <TableCell >{amountWon && amountWon.toLocaleString()}</TableCell>
             </TableRow>
           ))}

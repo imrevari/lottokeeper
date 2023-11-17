@@ -7,6 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import { FC } from 'react';
 import { LotteryTicket } from '../../interfaces/interfaces';
 import { UserType } from '../../interfaces/enums';
+import { TableSortLabel } from '@mui/material';
 
 
 interface TableProps {
@@ -19,12 +20,60 @@ const AllTicketsSortableTable: FC<TableProps> = ({rows}) => {
       <Table sx={{ minWidth: '850px', maxWidth: '100%'}} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell sx={{width: '200px'}}>Date purchased</TableCell>
-            <TableCell >selected numbers</TableCell>
-            <TableCell >Purchased by</TableCell>
-            <TableCell >Draw conducted</TableCell>
-            <TableCell >Successful guesses</TableCell>
-            <TableCell >Amount won</TableCell>
+            <TableCell sx={{width: '200px'}}>
+                {`Date purchased`}
+                <TableSortLabel
+                    id={'purchased'}
+                    active={true}
+                    direction={'desc'}
+                    onClick={(e) => console.log('purchased')}
+                />
+            </TableCell>
+            <TableCell >
+                {`selected numbers`}
+                <TableSortLabel
+                    id={'selectedNumbers'}
+                    active={true}
+                    direction={'desc'}
+                    onClick={(e) => console.log('selectedNumbers')}
+                />
+            </TableCell>
+            <TableCell >
+                {`Purchased by`}
+                <TableSortLabel
+                    id={'userType'}
+                    active={true}
+                    direction={'desc'}
+                    onClick={(e) => console.log('userType')}
+                />
+            </TableCell>
+            <TableCell >
+                {`Draw conducted`}
+                <TableSortLabel
+                    id={'drawConducted'}
+                    active={true}
+                    direction={'desc'}
+                    onClick={(e) => console.log('drawConducted')}
+                />
+            </TableCell>
+            <TableCell >
+                {`Successful guesses`}
+                <TableSortLabel
+                    id={'purchased'}
+                    active={true}
+                    direction={'desc'}
+                    onClick={(e) => console.log('purchased')}
+                />
+            </TableCell>
+            <TableCell >
+                {`Amount won`}
+                <TableSortLabel
+                    id={'purchased'}
+                    active={true}
+                    direction={'desc'}
+                    onClick={(e) => console.log('purchased')}
+                />
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -38,7 +87,7 @@ const AllTicketsSortableTable: FC<TableProps> = ({rows}) => {
               <TableCell >{selectedNumbers.toLocaleString()}</TableCell>
               <TableCell >{userType == UserType.PLAYER ? 'player' : 'robot'}</TableCell>
               <TableCell align="left">{drawConducted ? 'yes' : 'no'}</TableCell>
-              <TableCell >{winningNumbers && (selectedNumbers.filter((number) => winningNumbers.includes(number))).toLocaleString()}</TableCell>
+              <TableCell >{winningNumbers && winningNumbers.toLocaleString()}</TableCell>
               <TableCell >{amountWon && amountWon.toLocaleString()}</TableCell>
             </TableRow>
           ))}
