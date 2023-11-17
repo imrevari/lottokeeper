@@ -1,10 +1,8 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useStateContext } from '../../stateContext/StateContext';
 
-import { Input } from '@mui/base/Input';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 

@@ -28,7 +28,7 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
   }, [lotteryTickets])
 
   const checkForWinningTickets = (numbers: number[]) => {
-    const tickets = new Array<LotteryTicket>
+    const tickets = new Array<LotteryTicket>()
 
     unplayedTickets.forEach(e => {
       tickets.push({

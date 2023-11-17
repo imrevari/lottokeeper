@@ -33,7 +33,7 @@ const AllTicketsAdminTable: FC<TableProps> = ({rows}) => {
                 {new Date(purchased.getTime()).toLocaleString()}
               </TableCell>
               <TableCell >{selectedNumbers.toLocaleString()}</TableCell>
-              <TableCell >{userType == UserType.PLAYER ? 'player' : 'robot'}</TableCell>
+              <TableCell >{userType === UserType.PLAYER ? 'player' : 'robot'}</TableCell>
             </TableRow>
           ))}
         </TableBody>

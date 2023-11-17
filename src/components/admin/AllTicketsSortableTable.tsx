@@ -151,7 +151,7 @@ const AllTicketsSortableTable: FC<TableProps> = ({rows}) => {
                 {new Date(purchased.getTime()).toLocaleString()}
               </TableCell>
               <TableCell >{selectedNumbers.toLocaleString()}</TableCell>
-              <TableCell >{userType == UserType.PLAYER ? 'player' : 'robot'}</TableCell>
+              <TableCell >{userType === UserType.PLAYER ? 'player' : 'robot'}</TableCell>
               <TableCell align="left">{drawConducted ? 'yes' : 'no'}</TableCell>
               <TableCell >{winningNumbers && winningNumbers.toLocaleString()}</TableCell>
               <TableCell >{amountWon && amountWon.toLocaleString()}</TableCell>
