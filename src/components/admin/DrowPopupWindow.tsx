@@ -28,13 +28,22 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
   }, [lotteryTickets])
 
   const checkForWinningTickets = (numbers: number[]) => {
-    const tickets =  [...Array.from(unplayedTickets)];
+    const tickets = new Array<LotteryTicket>
+
+    unplayedTickets.forEach(e => {
+      tickets.push({
+        user: {userType: e.user.userType, userName: '', balance: 0},
+        purchased: new Date(e.purchased),
+        selectedNumbers: [...e.selectedNumbers],
+        drawConducted: true
+      })
+    })
+
     let winnersOf5 = 0;
     let winnersOf4 = 0;
     let winnersOf3 = 0;
     let winnersOf2 = 0;
     tickets.forEach(element => {
-      element.drawConducted = true;
       const matchingNumbers = element.selectedNumbers.filter( number => numbers.includes(number))
       if(matchingNumbers.length >= 2){
         element.winningNumbers = matchingNumbers;
@@ -98,7 +107,7 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
     })
     lotteryLoses(totalWonAmount)
     applyWinAmountOfPlayer(tickets)
-    //updateDrawnTickets(tickets)
+    updateDrawnTickets(tickets)
   }
 
 

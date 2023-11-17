@@ -70,7 +70,7 @@ const reducer = (state: State, action: Action): State => {
         case Actions.UPDATE_DRAWN_TICKETS:
             return {
                 ...state,
-                lotteryTickets: [...state.lotteryTickets.filter( ({drawConducted}) => !drawConducted),
+                lotteryTickets: [...state.lotteryTickets.filter( ({drawConducted}) => drawConducted),
                      ...action.payload.updatedTickets]
             }
         default:
