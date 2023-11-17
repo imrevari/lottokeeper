@@ -25,7 +25,7 @@ const PlayersPage: FC<any> = () => {
     }
 
     const ticketsOfThePlayer = useMemo(() => {
-        return lotteryTickets.filter(({user}) => user.userType == UserType.PLAYER)
+        return lotteryTickets.filter(({user}) => user.userType === UserType.PLAYER)
     }, [lotteryTickets])
 
     return(<>

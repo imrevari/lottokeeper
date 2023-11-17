@@ -1,6 +1,5 @@
-import { FC, Fragment, useMemo, useState } from 'react';
-import { Result } from '../../interfaces/interfaces';
-import { List, ListItem, ListItemText, ListSubheader } from '@mui/material';
+import { List, ListItem, ListItemText } from '@mui/material';
+import { FC } from 'react';
 
 
 const ResultInfo: FC<any> = ({result}) => {
