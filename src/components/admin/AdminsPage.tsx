@@ -5,6 +5,7 @@ import AdminHeader from './AdminHeader';
 import AllTicketsAdminTable from './AllTicketsAdminTable';
 import DrowPopupWindow from './DrowPopupWindow';
 import RandomGeneratorPopupWindow from './RandomGeneratorPopupWindow';
+import AllTicketsSortableTable from './AllTicketsSortableTable';
 
 
 const AdminsPage: FC<any> = () => {
@@ -44,7 +45,7 @@ const AdminsPage: FC<any> = () => {
         ?
         <AllTicketsAdminTable rows={lotteryTickets.sort( ({user: {userType: a}}, {user: {userType: b}}) => a - b)}/>
         :
-        <></>}
+        <AllTicketsSortableTable rows={lotteryTickets.sort( ({user: {userType: a}}, {user: {userType: b}}) => a - b)}/>}
         <DrowPopupWindow open={isDrawOpened} setOpen={setIsDrawOpened}/>
         <RandomGeneratorPopupWindow open={isRandomGeneratorOpened} setOpen={setIsRandomgeneratorOpened}/>
     </Box>
