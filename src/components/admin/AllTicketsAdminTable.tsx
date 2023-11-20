@@ -15,19 +15,20 @@ interface TableProps {
 
 const AllTicketsAdminTable: FC<TableProps> = ({rows}) => {
   return (
-    <TableContainer>
-      <Table sx={{ minWidth: '650px', maxWidth: '650px' }} aria-label="simple table">
-        <TableHead>
+    <TableContainer data-testid="admin-table-container">
+      <Table sx={{ minWidth: '650px', maxWidth: '650px' }} aria-label="simple table" data-testid="admin-table-table">
+        <TableHead data-testid="admin-table-header">
           <TableRow>
             <TableCell sx={{width: '200px'}}>Date purchased</TableCell>
             <TableCell >selected numbers</TableCell>
             <TableCell >Purchased by</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody data-testid="admin-table-boy">
           {rows.map(({purchased, selectedNumbers, user:{userType}}, index) => (
             <TableRow
               key={index}
+              data-testid={`admin-table-row-${index}`}
             >
               <TableCell component="th" scope="row">
                 {new Date(purchased.getTime()).toLocaleString()}

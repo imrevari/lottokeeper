@@ -12,18 +12,18 @@ const AdminHeader: FC<any> = () => {
 
     const {admin:{balance, userName}} = useStateContext()
 
-    return(<>
-        <Box>
+    return(
+        <Box data-testid="admin-header-box">
             <AppBar position="static" color='inherit'>
                 <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'left'}}>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'left'}} data-testid="admin-header-typography">
                         {`${userName}, your balance is: ${balance.toLocaleString()}`}
                     </Typography>
 
                 </Toolbar>
             </AppBar>
         </Box>
-    </>)
+    )
 }
 
 

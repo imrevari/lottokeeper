@@ -17,7 +17,7 @@ import { PRICE_OF_TICKET, PRIZE_FOR_FIVE, PRIZE_FOR_FOUR, PRIZE_FOR_THREE, PRIZE
 
 
 
-const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
+const DrawPopupWindow: FC<any> = ({open, setOpen}) => {
 
   const {draw, lotteryTickets, updateDrawnTickets, lotteryLoses, winLottary} = useStateContext()
   const [drownNumbers, setDrownNumbers] = useState<number[] | null>(null)
@@ -125,8 +125,9 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
         fullWidth={true}
         open={open}
         onClose={handleClose}
+        data-testid="admin-draw-popup-dialog"
       >
-        <DialogTitle>Draw 5 random numbers</DialogTitle>
+        <DialogTitle data-testid="admin-draw-popup-title">Draw 5 random numbers</DialogTitle>
         <DialogContent>
           <DialogContentText
             sx={{marginBottom: '8px'}}
@@ -134,6 +135,7 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
             Click on the button to star.
           </DialogContentText>
           <Box
+            data-testid="admin-draw-popup-box"
             noValidate
             component="form"
             sx={{
@@ -144,14 +146,18 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
               
             }}
           > 
-            <Button variant='outlined'
-              style={{maxWidth: '110px', minWidth: '110px'}}
-              onClick={drawNumbers}
-              >Draw</Button>
-              {drownNumbers && 
+            
+              {drownNumbers ? 
               <Typography variant="h5" sx={{marginLeft: '5px', paddingTop: '3px'}}>
                 {`Numbers are: ${drownNumbers.toLocaleString()}`}
-              </Typography>}
+              </Typography>
+              :
+              <Button variant='outlined'
+              style={{maxWidth: '110px', minWidth: '110px'}}
+              onClick={drawNumbers}
+              data-testid="admin-draw-popup-draw-button"
+              >Draw</Button>
+              }
               
           </Box>
 
@@ -159,6 +165,7 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
         </DialogContent>
         <DialogActions>
             <Button variant='outlined'
+                data-testid="admin-draw-popup-close-button"
                 color='error'
                 style={{maxWidth: '110px', minWidth: '110px'}}
                 onClick={handleClose}>Close</Button>
@@ -169,6 +176,6 @@ const DrowPopupWindow: FC<any> = ({open, setOpen}) => {
 }
 
 
-DrowPopupWindow.displayName = 'DrowPopupWindow';
+DrawPopupWindow.displayName = 'DrawPopupWindow';
 
-export default DrowPopupWindow;
+export default DrawPopupWindow;

@@ -55,8 +55,9 @@ const RandomGeneratorPopupWindow: FC<any> = ({open, setOpen}) => {
         fullWidth={true}
         open={open}
         onClose={handleClose}
+        data-testid="admin-random-popup-dialog"
       >
-        <DialogTitle>Generate random players' purchases</DialogTitle>
+        <DialogTitle data-testid="admin-random-popup-dialog-title">Generate random players' purchases</DialogTitle>
         <DialogContent>
           <DialogContentText
             sx={{marginBottom: '8px'}}
@@ -64,6 +65,7 @@ const RandomGeneratorPopupWindow: FC<any> = ({open, setOpen}) => {
             {`Select the number of players you would like to generate games for (1 to ${MAX_ROBOT_DRAWS}).`}
           </DialogContentText>
           <Box
+            data-testid="admin-random-popup-box"
             noValidate
             component="form"
             sx={{
@@ -76,12 +78,14 @@ const RandomGeneratorPopupWindow: FC<any> = ({open, setOpen}) => {
           >
                 <input
                     type='number'
+                    data-testid="admin-random-popup-input"
                     value={number}
                     min={1}
                     max={MAX_ROBOT_DRAWS}
                     onChange={(e) => handleNumberChange(e.target.value)}
                 /> 
                 <Button variant='outlined'
+                    data-testid="admin-random-popup-generate-button"
                     style={{maxWidth: '110px', minWidth: '110px', marginLeft: '10px'}}
                     onClick={generateRandomPurchases}
                 >Generate</Button> 
@@ -90,6 +94,7 @@ const RandomGeneratorPopupWindow: FC<any> = ({open, setOpen}) => {
         <DialogActions>
             <Button variant='outlined'
                 color='error'
+                data-testid="admin-random-popup-close-button"
                 style={{maxWidth: '110px', minWidth: '110px'}}
                 onClick={handleClose}>Close</Button>
         </DialogActions>

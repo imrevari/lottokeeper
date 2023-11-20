@@ -82,14 +82,14 @@ const AllTicketsSortableTable: FC<TableProps> = ({rows}) => {
 
 
   return (
-    <TableContainer sx={{marginTop: '10px'}}>
-      <Table sx={{ minWidth: '850px', maxWidth: '100%'}} aria-label="simple table">
-        <TableHead>
+    <TableContainer sx={{marginTop: '10px'}} data-testid="admin-sortable-table-container">
+      <Table sx={{ minWidth: '850px', maxWidth: '100%'}} aria-label="simple table" data-testid="admin-sortable-table-table">
+        <TableHead data-testid="admin-sortable-table-header">
           <TableRow>
             <TableCell sx={{width: '200px'}}>
                 {`Date purchased`}
                 <TableSortLabel
-                    id={'purchased'}
+                    data-testid="admin-sortable-table-purchased-button"
                     active={true}
                     direction={isAscending['purchased'] ? 'asc' : 'desc'}
                     onClick={() => sorting('purchased')}
@@ -107,7 +107,7 @@ const AllTicketsSortableTable: FC<TableProps> = ({rows}) => {
             <TableCell >
                 {`Purchased by`}
                 <TableSortLabel
-                    id={'userType'}
+                    data-testid="admin-sortable-table-userType-button"
                     active={true}
                     direction={isAscending['userType'] ? 'asc' : 'desc'}
                     onClick={() => sorting('userType')}
@@ -116,7 +116,7 @@ const AllTicketsSortableTable: FC<TableProps> = ({rows}) => {
             <TableCell >
                 {`Draw conducted`}
                 <TableSortLabel
-                    id={'drawConducted'}
+                    data-testid="admin-sortable-table-drawConducted-button"
                     active={true}
                     direction={isAscending['drawConducted'] ? 'asc' : 'desc'}
                     onClick={() => sorting('drawConducted')}
@@ -125,7 +125,7 @@ const AllTicketsSortableTable: FC<TableProps> = ({rows}) => {
             <TableCell >
                 {`Successful guesses`}
                 <TableSortLabel
-                    id={'winningNumbers'}
+                    data-testid="admin-sortable-table-winningNumbers-button"
                     active={true}
                     direction={isAscending['winningNumbers'] ? 'asc' : 'desc'}
                     onClick={() => sorting('winningNumbers')}
@@ -134,7 +134,7 @@ const AllTicketsSortableTable: FC<TableProps> = ({rows}) => {
             <TableCell >
                 {`Amount won`}
                 <TableSortLabel
-                    id={'amountWon'}
+                    data-testid="admin-sortable-table-amountWon-button"
                     active={true}
                     direction={isAscending['amountWon'] ? 'asc' : 'desc'}
                     onClick={() => sorting('amountWon')}
@@ -142,10 +142,11 @@ const AllTicketsSortableTable: FC<TableProps> = ({rows}) => {
             </TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody data-testid="admin-sortable-table-body">
           {sortedRows.map(({purchased, selectedNumbers, user:{userType}, drawConducted, amountWon, winningNumbers}, index) => (
             <TableRow
               key={index}
+              data-testid={`admin-sortable-table-row-${index}`}
             >
               <TableCell component="th" scope="row">
                 {new Date(purchased.getTime()).toLocaleString()}
