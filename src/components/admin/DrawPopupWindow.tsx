@@ -19,7 +19,7 @@ import { PRICE_OF_TICKET, PRIZE_FOR_FIVE, PRIZE_FOR_FOUR, PRIZE_FOR_THREE, PRIZE
 const DrawPopupWindow: FC<PopupWindowProps> = ({open, setOpen}) => {
 
   const {draw, lotteryTickets, updateDrawnTickets, lotteryLoses, winLottary} = useStateContext()
-  const [drownNumbers, setDrownNumbers] = useState<number[] | null>(null)
+  const [drawnNumbers, setdrawnNumbers] = useState<number[] | null>(null)
   const [winResults, setWinResults] = useState<Result | null>(null)
 
   const unplayedTickets = useMemo(() => {
@@ -82,7 +82,7 @@ const DrawPopupWindow: FC<PopupWindowProps> = ({open, setOpen}) => {
   const drawNumbers = () =>{
     const numbers = generateRandomNumbers()
     
-    setDrownNumbers(numbers.sort((a, b) => a - b))
+    setdrawnNumbers(numbers.sort((a, b) => a - b))
 
     draw({
       conductedOn: new Date(),
@@ -114,7 +114,7 @@ const DrawPopupWindow: FC<PopupWindowProps> = ({open, setOpen}) => {
 
   const handleClose = () => {
     setWinResults(null)
-    setDrownNumbers(null)
+    setdrawnNumbers(null)
     setOpen(false);
   };
 
@@ -131,7 +131,7 @@ const DrawPopupWindow: FC<PopupWindowProps> = ({open, setOpen}) => {
           <DialogContentText
             sx={{marginBottom: '8px'}}
           >
-            Click on the button to star.
+            {!drawnNumbers && 'Click on the button to star.'}
           </DialogContentText>
           <Box
             data-testid="admin-draw-popup-box"
@@ -146,9 +146,9 @@ const DrawPopupWindow: FC<PopupWindowProps> = ({open, setOpen}) => {
             }}
           > 
             
-              {drownNumbers ? 
+              {drawnNumbers ? 
               <Typography variant="h5" sx={{marginLeft: '5px', paddingTop: '3px'}}>
-                {`Numbers are: ${drownNumbers.toLocaleString()}`}
+                {`Numbers are: ${drawnNumbers.toLocaleString()}`}
               </Typography>
               :
               <Button variant='outlined'
