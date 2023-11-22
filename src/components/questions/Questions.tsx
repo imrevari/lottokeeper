@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import { FC } from 'react';
 
-const Questions: FC<any> = () => {
+const Questions: FC = () => {
 
     return( 
         <Box>

@@ -1,8 +1,13 @@
 import { List, ListItem, ListItemText } from '@mui/material';
 import { FC } from 'react';
+import { Result } from '../../interfaces/interfaces';
+
+interface ResultInfoProps {
+    result: Result;
+}
 
 
-const ResultInfo: FC<any> = ({result}) => {
+const ResultInfo: FC<ResultInfoProps> = ({result}) => {
 
     const {totalTickets, totalIncome, totalWonAmount, totalProfit, winnersOf2, winnersOf3, winnersOf4, winnersOf5} = result;
 

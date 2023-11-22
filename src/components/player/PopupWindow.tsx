@@ -9,11 +9,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { FC, Fragment, useState } from 'react';
 import { PRICE_OF_TICKET } from '../../interfaces/constants';
+import { PopupWindowProps } from '../../interfaces/interfaces';
 import { useStateContext } from '../../stateContext/StateContext';
 
 
 
-const PopupWindow: FC<any> = ({open, setOpen}) => {
+const PopupWindow: FC<PopupWindowProps> = ({open, setOpen}) => {
 
 
     const {player, purchaseTicket} = useStateContext()

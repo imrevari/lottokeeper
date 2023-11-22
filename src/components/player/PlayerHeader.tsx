@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 
 
 
-const PlayerHeader: FC<any> = () => {
+const PlayerHeader: FC = () => {
 
     const {player, changeName} = useStateContext()
 

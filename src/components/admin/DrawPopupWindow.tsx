@@ -10,14 +10,13 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { generateRandomNumbers } from '../../commonFunctions/functions';
 import { Typography } from '@mui/material';
 import { useStateContext } from '../../stateContext/StateContext';
-import { LotteryTicket, Result } from '../../interfaces/interfaces';
+import { LotteryTicket, PopupWindowProps, Result } from '../../interfaces/interfaces';
 import ResultInfo from './ResultInfo';
 import { UserType } from '../../interfaces/enums';
 import { PRICE_OF_TICKET, PRIZE_FOR_FIVE, PRIZE_FOR_FOUR, PRIZE_FOR_THREE, PRIZE_FOR_TWO } from '../../interfaces/constants';
 
 
-
-const DrawPopupWindow: FC<any> = ({open, setOpen}) => {
+const DrawPopupWindow: FC<PopupWindowProps> = ({open, setOpen}) => {
 
   const {draw, lotteryTickets, updateDrawnTickets, lotteryLoses, winLottary} = useStateContext()
   const [drownNumbers, setDrownNumbers] = useState<number[] | null>(null)

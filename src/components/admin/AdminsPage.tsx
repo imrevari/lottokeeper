@@ -8,7 +8,7 @@ import RandomGeneratorPopupWindow from './RandomGeneratorPopupWindow';
 import AllTicketsSortableTable from './AllTicketsSortableTable';
 
 
-const AdminsPage: FC<any> = () => {
+const AdminsPage: FC = () => {
 
     const {lotteryTickets, draws} = useStateContext()
 

@@ -11,10 +11,11 @@ import { UserType } from '../../interfaces/enums';
 import { useStateContext } from '../../stateContext/StateContext';
 import { generateRandomNumbers } from '../../commonFunctions/functions';
 import { MAX_ROBOT_DRAWS, PRICE_OF_TICKET } from '../../interfaces/constants';
+import { PopupWindowProps } from '../../interfaces/interfaces';
 
 
 
-const RandomGeneratorPopupWindow: FC<any> = ({open, setOpen}) => {
+const RandomGeneratorPopupWindow: FC<PopupWindowProps> = ({open, setOpen}) => {
 
 
     const {purchaseTicket} = useStateContext()

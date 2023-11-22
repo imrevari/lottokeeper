@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { Actions, UserType } from "./enums";
 
 export interface User {
@@ -52,6 +53,11 @@ export interface StateContextType {
     lotteryTickets: LotteryTicket[];
     draws: Draw[];
   }
+
+export interface PopupWindowProps {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}
 
 export type Action =
 | {

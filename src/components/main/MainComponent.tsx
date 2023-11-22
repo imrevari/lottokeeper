@@ -11,7 +11,7 @@ import PlayersPage from '../player/PlayersPage';
 import { useStateContext } from '../../stateContext/StateContext';
 import Questions from '../questions/Questions';
 
-const MainComponent: FC<any> = () => {
+const MainComponent: FC = () => {
 
     const [isLandingPage, setIsLandingPage] = useState<boolean>(true)
     const [isAdmin, setIsAdmin] = useState<boolean>(false)

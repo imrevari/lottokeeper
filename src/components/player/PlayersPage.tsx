@@ -9,7 +9,7 @@ import PopupWindow from './PopupWindow';
 import PurchasedTicketsTable from './PurchasedTicketsTable';
 
 
-const PlayersPage: FC<any> = () => {
+const PlayersPage: FC = () => {
 
     const {player: {balance}, lotteryTickets, draws} = useStateContext()
 

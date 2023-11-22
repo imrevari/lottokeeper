@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 
 
 
-const AdminHeader: FC<any> = () => {
+const AdminHeader: FC = () => {
 
     const {admin:{balance, userName}} = useStateContext()
 
