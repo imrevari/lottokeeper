@@ -86,7 +86,7 @@ const AllTicketsSortableTable: FC<TableProps> = ({rows}) => {
       <Table sx={{ minWidth: '850px', maxWidth: '100%'}} aria-label="simple table" data-testid="admin-sortable-table-table">
         <TableHead data-testid="admin-sortable-table-header">
           <TableRow>
-            <TableCell sx={{width: '200px'}}>
+            <TableCell sx={{width: '18%'}}>
                 {`Date purchased`}
                 <TableSortLabel
                     data-testid="admin-sortable-table-purchased-button"
@@ -95,8 +95,8 @@ const AllTicketsSortableTable: FC<TableProps> = ({rows}) => {
                     onClick={() => sorting('purchased')}
                 />
             </TableCell>
-            <TableCell >
-                {`selected numbers`}
+            <TableCell sx={{width: '17%'}}>
+                {`Selected numbers`}
                 {/* <TableSortLabel
                     id={'selectedNumbers'}
                     active={true}
@@ -104,7 +104,7 @@ const AllTicketsSortableTable: FC<TableProps> = ({rows}) => {
                     onClick={() => sorting('selectedNumbers')}
                 /> */}
             </TableCell>
-            <TableCell >
+            <TableCell sx={{width: '15%'}}>
                 {`Purchased by`}
                 <TableSortLabel
                     data-testid="admin-sortable-table-userType-button"
@@ -113,7 +113,7 @@ const AllTicketsSortableTable: FC<TableProps> = ({rows}) => {
                     onClick={() => sorting('userType')}
                 />
             </TableCell>
-            <TableCell >
+            <TableCell sx={{width: '15%'}}>
                 {`Draw conducted`}
                 <TableSortLabel
                     data-testid="admin-sortable-table-drawConducted-button"
@@ -122,7 +122,7 @@ const AllTicketsSortableTable: FC<TableProps> = ({rows}) => {
                     onClick={() => sorting('drawConducted')}
                 />
             </TableCell>
-            <TableCell >
+            <TableCell sx={{width: '20%'}} >
                 {`Successful guesses`}
                 <TableSortLabel
                     data-testid="admin-sortable-table-winningNumbers-button"
@@ -131,7 +131,7 @@ const AllTicketsSortableTable: FC<TableProps> = ({rows}) => {
                     onClick={() => sorting('winningNumbers')}
                 />
             </TableCell>
-            <TableCell >
+            <TableCell sx={{width: '15%'}} >
                 {`Amount won`}
                 <TableSortLabel
                     data-testid="admin-sortable-table-amountWon-button"

@@ -20,7 +20,7 @@ const AllTicketsAdminTable: FC<TableProps> = ({rows}) => {
         <TableHead data-testid="admin-table-header">
           <TableRow>
             <TableCell sx={{width: '200px'}}>Date purchased</TableCell>
-            <TableCell >selected numbers</TableCell>
+            <TableCell >Selected numbers</TableCell>
             <TableCell >Purchased by</TableCell>
           </TableRow>
         </TableHead>

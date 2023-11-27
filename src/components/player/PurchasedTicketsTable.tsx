@@ -19,8 +19,8 @@ const PurchasedTicketsTable: FC<TableProps> = ({rows}) => {
         <TableHead>
           <TableRow>
             <TableCell sx={{width: '200px'}}>Date purchased</TableCell>
-            <TableCell >selected numbers</TableCell>
-            <TableCell >draw conducted</TableCell>
+            <TableCell >Selected numbers</TableCell>
+            <TableCell >Draw conducted</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

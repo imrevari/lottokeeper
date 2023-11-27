@@ -38,22 +38,25 @@ const MainComponent: FC = () => {
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'left'}}>
                             {HEADER}
                         </Typography>
-                        <Button color="inherit" style={{maxWidth: '130px', minWidth: '130px'}} 
-                            onClick={openPlayersPage}>Player</Button>
-                        <Button color="inherit" style={{maxWidth: '130px', minWidth: '130px'}} 
-                            onClick={openAdminPage}>Admin</Button>
+                        <Box>
+                            <Button color="inherit" style={{maxWidth: '130px', minWidth: '130px'}} 
+                                onClick={openPlayersPage}>Player</Button>
+                            <Button color="inherit" style={{maxWidth: '130px', minWidth: '130px'}} 
+                                onClick={openAdminPage}>Admin</Button>
 
-                        <Button color="inherit" 
-                            style={{maxWidth: '130px', minWidth: '130px'}}
-                            onClick={() => resetRound()}>Reset round</Button>
-                        <Button color="inherit" 
-                            style={{maxWidth: '130px', minWidth: '130px'}}
-                            onClick={() => resetGame()}
-                            >Reset game</Button>
-                        <Button color="inherit" 
-                            style={{maxWidth: '130px', minWidth: '130px'}}
-                            onClick={() => setIsLandingPage(true)}
-                            >My questions</Button>
+                            <Button color="inherit" 
+                                style={{maxWidth: '130px', minWidth: '130px'}}
+                                onClick={() => resetRound()}>Reset round</Button>
+                            <Button color="inherit" 
+                                style={{maxWidth: '130px', minWidth: '130px'}}
+                                onClick={() => resetGame()}
+                                >Reset game</Button>
+                            <Button color="inherit" 
+                                style={{maxWidth: '130px', minWidth: '130px'}}
+                                onClick={() => setIsLandingPage(true)}
+                                >My questions</Button>
+                        </Box>
+                        
                     </Toolbar>
                 </AppBar>
             </Box>

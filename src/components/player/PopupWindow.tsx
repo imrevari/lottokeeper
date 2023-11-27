@@ -90,8 +90,9 @@ const PopupWindow: FC<PopupWindowProps> = ({open, setOpen}) => {
               
             }}
           >
-                {numbers.map(e => 
+                {numbers.map((e, index) => 
                     <Avatar
+                    key={index}
                     sx= {{
                         margin: '1.5px',
                         bgcolor: selectedNumbers.includes(e) ? 'red' : ''

@@ -45,8 +45,8 @@ const AllTicketsPlayerTable: FC<TableProps> = ({rows}) => {
         <TableHead>
           <TableRow>
             <TableCell sx={{width: '25%'}}>Date purchased</TableCell>
-            <TableCell sx={{width: '20%'}}>selected numbers</TableCell>
-            <TableCell sx={{width: '20%'}}>draw conducted</TableCell>
+            <TableCell sx={{width: '20%'}}>Selected numbers</TableCell>
+            <TableCell sx={{width: '20%'}}>Draw conducted</TableCell>
             <TableCell sx={{width: '20%'}}>
             {`Successful guesses`}
               <TableSortLabel

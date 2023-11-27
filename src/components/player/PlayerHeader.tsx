@@ -17,7 +17,7 @@ const PlayerHeader: FC = () => {
     const {balance, userName} = player
 
     const [isEditMode, setisEditMode] =useState<boolean>(false)
-    const [name, setName] =useState<string>(userName)
+    const [name, setName] =useState<string>(userName ? userName : 'unset name')
 
     const editOrSave = () => {
         if(isEditMode){
@@ -37,18 +37,17 @@ const PlayerHeader: FC = () => {
             <AppBar position="static" color='inherit'>
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'left'}}>
-                        <div>
                             {isEditMode ? 
-                            <Input value={name ? name : `unset name`}
+                            <Input value={name}
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter'){
                                     updateName()
                                 }
                             }}
-                            onChange={(e) => setName(e.target.value)}/> :
+                            onChange={(e) => setName(e.target.value)}/>
+                            :                           
                             (userName ? userName : `unset name`).concat(`, your remaining balance is: ${balance.toLocaleString()}`)
                             }
-                        </div>
                     </Typography>
 
                     <Button color="inherit" variant='outlined'
